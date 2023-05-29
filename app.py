@@ -18,6 +18,7 @@ cache.init_app(app)
 
 from views.PingView import PingView
 from views.LoadView import LoadView
+from views.AuthorizationView import AuthorizationView
 
 
 @app.route("/ping", methods=["GET"])
@@ -28,6 +29,9 @@ def ping():
 def load_credit(messageId):
     return LoadView.load_credit(messageId)
 
+@app.route("/authorization/<string:messageId>", methods=["PUT"])
+def authorize_debit(messageId):
+    return AuthorizationView.authorize_debit(messageId)
 
 if __name__ == "__main__":
     CORS(app)
